@@ -1,0 +1,26 @@
+{
+  "name": "set-from-path",
+  "version": "1.0.0",
+  "description": "Set a nested object property using a string path",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joakin/set-from-path"
+  },
+  "keywords": [
+    "set",
+    "object",
+    "array",
+    "key",
+    "path"
+  ],
+  "author": "Joakin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joakin/set-from-path/issues"
+  },
+  "homepage": "https://github.com/joakin/set-from-path"
+}
