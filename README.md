@@ -4,6 +4,8 @@ set-from-path
 JS library to help you set values in nested objects using a string '.'
 separated path indicating the different keys to be accessed along the way.
 
+It also exports a get function to get properties with the same notation
+
 Examples
 --------
 
@@ -11,7 +13,7 @@ Examples
 // Defaults to throwing when intermediate paths are not valid
 // (non-existent or primitives)
 
-var set = require('set-from-path')
+var set = require('set-from-path').set
 
 var a = {}
 set('b', 1, a)            //> { b: 1 }
@@ -36,6 +38,21 @@ setp('b.c', 1, c);      //> { a: { a: 1 }, b: { c: 1 } }
 setp('a.c.d', 1, c);    //> { a: { a: 1, c: { d: 1 } }, b: { c: 1 } }
 
 // You get the idea...
+
+// There is also a get function that works the same way
+
+var get = require('set-from-path').get
+
+var a = { b: 1, c: { d: 2, e: [3, {f: 5}, 2] } };
+
+get('a', a)       //> undefined
+get('b', a)       //> 1
+get('c.a', a)     //> undefined
+get('c.d', a)     //> 2
+get('c.e.0', a)   //> 3
+get('c.e.1', a)   //> {f:5}
+get('c.e.1.f', a) //> 5
+
 ```
 
 Usage

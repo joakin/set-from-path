@@ -1,5 +1,5 @@
 
-module.exports = exports = setInPath.bind(null, false);
+exports.set = setInPath.bind(null, false);
 exports.setp = setInPath.bind(null, true);
 
 function setInPath(createEmpty, path, value, obj) {
@@ -17,5 +17,18 @@ function setInPath(createEmpty, path, value, obj) {
 	}
 	tmp[ks[i]] = value;
 	return obj;
+}
+
+exports.get = function(path, obj) {
+	var ks = path.split('.');
+	var i = 0;
+	var tmp = obj;
+	while (i < ks.length - 1) {
+		var next = tmp[ks[i]];
+		if (typeof next !== 'object') return null;
+		tmp = next;
+		i++;
+	}
+  return tmp[ks[i]];
 }
 

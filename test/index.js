@@ -1,10 +1,11 @@
 
 var test = require('tape');
 
-var set = require('../index');
+var set = require('../index').set;
 var setp = require('../index').setp;
+var get = require('../index').get;
 
-test.skip('exports set as module, and also as "setp" method of module', function(t) {
+test('exports set, and also as "setp" method of module', function(t) {
   t.equal(typeof set, 'function');
   t.equal(typeof setp, 'function');
   t.end();
@@ -65,3 +66,21 @@ test('can set in arrays', function(t) {
   t.equal(b.a.b[1].c, 1);
   t.end();
 })
+
+test('exports a get function', function(t) {
+  t.equal(typeof get, 'function');
+  t.end();
+})
+
+test('can get keys', function(t) {
+  var a = { b: 1, c: { d: 2, e: [3, {f: 5}, 2] } };
+  t.equal(get('a', a), undefined);
+  t.equal(get('b', a), 1);
+  t.equal(get('c.a', a), undefined);
+  t.equal(get('c.d', a), 2);
+  t.equal(get('c.e.0', a), 3);
+  t.deepEqual(get('c.e.1', a), {f:5});
+  t.equal(get('c.e.1.f', a), 5);
+  t.end();
+})
+
