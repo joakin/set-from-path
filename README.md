@@ -61,3 +61,29 @@ Usage
 ```
 npm install --save set-from-path
 ```
+
+Upgrade
+-------
+
+### 1.0 to 2.0
+
+All functions are exported from the module as methods. Before, the exports was
+the `set` function, but in 2.0 exports is just an object with the
+functions on it, so:
+
+Change in your code:
+
+** 1.0 **
+```js
+var set = require('set-from-path')
+```
+
+** 2.0 **
+```js
+var set = require('set-from-path').set
+```
+
+The rest remains the same (`.setp` or `.set`).
+
+`get` was added to 2.0.
+
